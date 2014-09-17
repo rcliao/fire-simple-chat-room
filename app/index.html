@@ -2,14 +2,32 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Fire Funder Dev Chat</title>
+	<title>Simple Chat Room</title>
 
 	<link rel="stylesheet" href="js/libs/bootstrap/dist/css/bootstrap.css">
-	<link rel="stylesheet" href="css/app.css">
+	<link rel="stylesheet" href="js/libs/fontawesome/css/font-awesome.css">
+	<link rel="stylesheet" href="css/simpleChat.app.css">
 </head>
 <body>
 
-	Hello, World!
+	<section class="container z-index-4" id="chat_container">
+		<header class="clearfix z-index-2">
+			<div class="brand pull-left">
+				<i class="fa fa-comments-o fa-border"></i>
+				Simple Chat
+			</div>
+
+			<div id="header_menu" class="pull-right">
+				<a href="">
+					Login
+				</a>
+
+				<a href="" id="viewers">
+					<i class="fa fa-eye fa-2x"></i> 6
+				</a>
+			</div>
+		</header>
+	</section>
 
 	<script src="js/libs/requirejs/require.js" data-main="js/manifest.js"></script>
 </body>

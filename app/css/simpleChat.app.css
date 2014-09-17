@@ -1,0 +1,72 @@
+/* app css stylesheet */
+
+html, body {
+    padding: 0;
+    margin: 0;
+
+    width: 100%;
+    height: 100%;
+}
+
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+    cursor: pointer;
+}
+
+body {
+    background: url(../img/space-pattern.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    position: relative;
+    color: #fff;
+}
+
+/* box-shadow helper class */
+.z-index-1 {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.z-index-2 {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.z-index-3 {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.z-index-4 {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.z-index-5 {
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+/* top level definition */
+#chat_container {
+    height: 100%;
+    padding-left: 0;
+    padding-right: 0;
+
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+#chat_container>header {
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+
+    background-color: rgba(0, 0, 0, 0.4);
+    font-size: 18px;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+#viewers {
+    margin-left: 0.5em;
+
+    font-size: 12px;
+
+    color: #FFB5E2;
+}

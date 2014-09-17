@@ -1,23 +1,20 @@
 {
-	"name": "Simple Chat",
-	"description": "A simple chatroom application",
-	"version": "0.0.1",
-	"private": true,
-	"dependencies": {
-		"requirejs": "latest",
-
-		"bootstrap": "latest",
-		"angular-bootstrap": "latest",
-
-		"angular": "1.2.x",
-		"angular-animate": "1.2.x",
-		"angular-resource": "1.2.x",
-		"angular-loader": "1.2.x",
-
-		"angular-ui-router": "latest",
-		"angular-ui-utils": "latest",
-
-		"firebase": "latest",
-		"angularfire": "latest"
-	}
+  "name": "Simple Chat",
+  "description": "A simple chatroom application",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "requirejs": "latest",
+    "bootstrap": "latest",
+    "angular-bootstrap": "latest",
+    "angular": "1.2.x",
+    "angular-animate": "1.2.x",
+    "angular-resource": "1.2.x",
+    "angular-loader": "1.2.x",
+    "angular-ui-router": "latest",
+    "angular-ui-utils": "latest",
+    "firebase": "latest",
+    "angularfire": "latest",
+    "fontawesome": "~4.2.0"
+  }
 }
