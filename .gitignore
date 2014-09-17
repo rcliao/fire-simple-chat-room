@@ -1,0 +1,9 @@
+app/js/libs/
+.bowerrc
+firebase.json
+
+*.log
+node_modules/
+
+config/
+logs/
