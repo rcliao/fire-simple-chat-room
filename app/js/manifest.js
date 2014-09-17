@@ -37,7 +37,7 @@ require(
 	[
 		'angular', // used for bootstrapping app
 
-		'simpileChat.app' // main app definition
+		'simpleChat.app' // main app definition
 	],
 	function(angular) {
 		angular.bootstrap(document, ['SimpleChat']);
