@@ -3,6 +3,9 @@
 define(
 	[
 		'angular',
+		'angular-animate',
+
+		'angular.ui-router',
 
 		'firebase',
 		'angular-firebase'
@@ -14,6 +17,8 @@ define(
 			.module(
 				'SimpleChat',
 				[
+					'ngAnimate',
+					'ui.router',
 					'firebase'
 				]
 			);

@@ -1,6 +1,6 @@
 define(
 	[
-		'simpleChat.app'
+		'simpleChat.module'
 	],
 	function(app) {
 		return app.controller('ChatCtrl', ['$scope', '$firebase',

@@ -1,34 +1,40 @@
 /* global require */
 
 require.config({
-	baseUrl: 'js',
 	paths: {
 		// angularjs official stuff
-		'angular': 'libs/angular/angular',
-		'angular-animate': 'libs/angular-animate/angular-animate',
+		'angular': '/app/libs/angular/angular',
+		'angular-animate': '/app/libs/angular-animate/angular-animate',
 
 		// angularjs-ui components
-		'angular.ui-router': 'libs/angualr-ui-router',
+		'angular.ui-router': '/app/libs/angular-ui-router/release/angular-ui-router',
 
 		// firebase
-		'angular-firebase': 'libs/angularfire/angularfire',
-		'firebase': 'libs/firebase/firebase',
+		'angular-firebase': '/app/libs/angularfire/angularfire',
+		'firebase': '/app/libs/firebase/firebase',
+		'firebase-simple-login': '/app/libs/firebase-simple-login',
+
+		// jquery for the semantic
+		'jquery': '/app/libs/jquery/dist/jquery.min',
 
 		// controllers
 		'simpleChat.chat': 'chat/chatCtrl',
 
 		// main app
-		'simpleChat.app': 'simpleChat.app'
+		'simpleChat.module': 'simpleChat.module'
 	},
 	shim: {
 		'angular': {
 			exports: 'angular'
 		},
+		'angular-animate': {
+			deps: ['angular']
+		},
+		'angular.ui-router': {
+			deps: ['angular']
+		},
 		'angular-firebase': {
 			deps: ['angular', 'firebase']
-		},
-		'angualr-ui-router': {
-			deps: ['angular']
 		}
 	}
 });
@@ -37,9 +43,12 @@ require(
 	[
 		'angular', // used for bootstrapping app
 
-		'simpleChat.app' // main app definition
+		'simpleChat.module', // main app definition
+		'simpleChat.routeConfig'
 	],
 	function(angular) {
+		'use strict';
+
 		angular.bootstrap(document, ['SimpleChat']);
 	}
 );
