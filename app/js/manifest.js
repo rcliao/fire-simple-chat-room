@@ -12,13 +12,19 @@ require.config({
 		// firebase
 		'angular-firebase': '/app/libs/angularfire/angularfire',
 		'firebase': '/app/libs/firebase/firebase',
-		'firebase-simple-login': '/app/libs/firebase-simple-login',
+		'firebase-simple-login':
+			'/app/libs/firebase-simple-login/firebase-simple-login',
 
 		// jquery for the semantic
 		'jquery': '/app/libs/jquery/dist/jquery.min',
 
 		// controllers
-		'simpleChat.chat': 'chat/chatCtrl',
+		'simpleChat.chatCtrl': 'chat/chatCtrl',
+
+		// authentication
+		'simpleChat.authenticationCtrl': 'authentication/authenticationCtrl',
+		'simpleChat.authentication.simpleLoginService':
+			'authentication/simpleLoginService',
 
 		// main app
 		'simpleChat.module': 'simpleChat.module'
@@ -35,6 +41,9 @@ require.config({
 		},
 		'angular-firebase': {
 			deps: ['angular', 'firebase']
+		},
+		'firebase': {
+			exports: 'Firebase'
 		}
 	}
 });

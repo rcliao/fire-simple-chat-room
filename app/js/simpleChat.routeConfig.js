@@ -1,6 +1,10 @@
+/*global define*/
+
 define(
 	[
-		'simpleChat.module'
+		'simpleChat.module',
+
+		'simpleChat.authenticationCtrl'
 	],
 	function(app) {
 		'use strict';
@@ -11,6 +15,8 @@ define(
 			.config(routeConfig);
 
 		function routeConfig ($stateProvider, $urlRouterProvider) {
+			getCurrentUser.$inject = ['SimpleLoginService'];
+
 			$urlRouterProvider.otherwise('/login');
 
 			$stateProvider
@@ -18,9 +24,17 @@ define(
 					'login',
 					{
 						url: '/login',
-						templateUrl: 'partials/authentication/login.html'
+						templateUrl: 'partials/authentication/login.html',
+						controller: 'AuthenticationCtrl as authentication',
+						resolve: {
+							'currentUser': getCurrentUser
+						}
 					}
 				);
+
+			function getCurrentUser (SimpleLoginService) {
+				return SimpleLoginService.$getCurrentUser();
+			}
 		}
 	}
 );

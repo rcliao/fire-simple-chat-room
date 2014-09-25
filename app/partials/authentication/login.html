@@ -8,7 +8,8 @@
 				<label for="login_username">Email</label>
 				<div class="ui left icon input">
 					<input type="email" id="login_username"
-						placeholder="Email">
+						placeholder="Email"
+						ng-model="authentication.user.email">
 					<i class="user icon"></i>
 				</div>
 			</div>
@@ -16,15 +17,22 @@
 				<label for="login_password">Password</label>
 				<div class="ui left icon input">
 					<input type="password" id="login_password"
-						placeholder="Password">
+						placeholder="Password"
+						ng-model="authentication.user.password">
 					<i class="lock icon"></i>
 				</div>
 			</div>
 
 			<section class="ui fluid two red buttons">
-				<button class="ui button">Login</button>
+				<button class="ui button"
+					ng-click="authentication.login()">
+					Login
+				</button>
 				<div class="or"></div>
-				<button class="ui button">Register</button>
+				<button class="ui button"
+					ng-click="authentication.register()">
+					Register
+				</button>
 			</section>
 
 			<div class="ui horizontal divider">
@@ -32,12 +40,14 @@
 			</div>
 
 			<section class="ui fluid two buttons">
-				<button class="ui google plus button">
+				<button class="ui google plus button"
+					ng-click="authentication.loginAsGoogle">
 					<i class="google plus icon"></i>
 					Google
 				</button>
 				<div class="or"></div>
-				<button class="ui button">
+				<button class="ui button"
+					ng-click="authentication.loginAsGithub">
 					<i class="github icon"></i>
 					Github
 				</button>

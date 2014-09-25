@@ -8,9 +8,10 @@ define(
 		'angular.ui-router',
 
 		'firebase',
-		'angular-firebase'
+		'angular-firebase',
+		'firebase-simple-login'
 	],
-	function(angular) {
+	function (angular) {
 		'use strict';
 
 		return angular
