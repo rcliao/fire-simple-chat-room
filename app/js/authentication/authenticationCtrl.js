@@ -12,38 +12,45 @@ define(
 			[
 				'$scope',
 				'$log',
-				'SimpleLoginService',
-				'currentUser'
+				'$timeout',
+				'SimpleLoginService'
 			];
 
 		return app
 			.controller('AuthenticationCtrl', AuthenticationCtrl);
 
 		function AuthenticationCtrl (
-			$scope, $log, SimpleLoginService, currentUser
+				$scope, $log, $timeout,
+				SimpleLoginService
 			) {
 
 			var vm = this;
 
 			vm.register = register;
 			vm.login = login;
-			vm.user = currentUser;
+			vm.loginAsGoogle = loginAsGoogle;
+			vm.loginAsGithub = loginAsGithub;
+			vm.loginAsTwitter = loginAsTwitter;
 
 			function register () {
-				console.log('registering');
-
 				SimpleLoginService.$createUser(
-					vm.user.username,
+					vm.user.email,
 					vm.user.password
 				)
-				.then(registerCallback)
+				.then(registerCallback, registerError);
 
 				function registerCallback (error) {
 					if (error === null) {
 						login();
 					} else {
-						$log.log('login failed: ', error);
+						vm.feedback = 'Failed to register: ' + error;
+						removeFeedbackLater();
 					}
+				}
+
+				function registerError (error) {
+					vm.feedback = 'Failed to register, reason: ' + error;
+					removeFeedbackLater();
 				}
 			}
 
@@ -55,12 +62,37 @@ define(
 				.then(loginSuccess, loginError);
 
 				function loginSuccess (user) {
-					$log.log(user);
+					vm.feedback = 'Welcome, ' + user.email;
+					removeFeedbackLater();
 				}
 
 				function loginError (error) {
-					$log.log(error);
+					vm.feedback = 'Failed to login, reason ' + error;
+					removeFeedbackLater();
 				}
+
+			}
+
+			function loginAsGoogle () {
+				SimpleLoginService.$login('google');
+			}
+
+			function loginAsGithub () {
+				SimpleLoginService.$login('github');
+			}
+
+			function loginAsTwitter () {
+				SimpleLoginService.$login('twitter');
+			}
+
+			function removeFeedbackLater () {
+				if (vm.feedbackId) {
+					$timeout.cancel(vm.feedbackId);
+				}
+
+				vm.feedbackId = $timeout(function() {
+					vm.feedback = undefined;
+				}, 3000);
 			}
 		}
 	}

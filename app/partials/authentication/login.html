@@ -4,12 +4,14 @@
 			Login Here
 		</h3>
 		<section class="ui form segment attached">
+			<!-- Login Form -->
 			<div class="field">
 				<label for="login_username">Email</label>
 				<div class="ui left icon input">
 					<input type="email" id="login_username"
 						placeholder="Email"
-						ng-model="authentication.user.email">
+						ng-model="authentication.user.email"
+						autofocus>
 					<i class="user icon"></i>
 				</div>
 			</div>
@@ -18,11 +20,13 @@
 				<div class="ui left icon input">
 					<input type="password" id="login_password"
 						placeholder="Password"
-						ng-model="authentication.user.password">
+						ng-model="authentication.user.password"
+						ng-enter="authentication.login()">
 					<i class="lock icon"></i>
 				</div>
 			</div>
 
+			<!-- Common Buttons -->
 			<section class="ui fluid two red buttons">
 				<button class="ui button"
 					ng-click="authentication.login()">
@@ -39,19 +43,31 @@
 				Or
 			</div>
 
-			<section class="ui fluid two buttons">
+			<!-- Login As Google or Github -->
+			<section class="ui fluid three buttons">
 				<button class="ui google plus button"
-					ng-click="authentication.loginAsGoogle">
+					ng-click="authentication.loginAsGoogle()">
 					<i class="google plus icon"></i>
 					Google
 				</button>
 				<div class="or"></div>
 				<button class="ui button"
-					ng-click="authentication.loginAsGithub">
+					ng-click="authentication.loginAsGithub()">
 					<i class="github icon"></i>
 					Github
 				</button>
+				<div class="or"></div>
+				<button class="ui twitter button"
+					ng-click="authentication.loginAsTwitter()">
+					<i class="twitter icon"></i>
+					Twitter
+				</button>
 			</section>
+		</section>
+		<section class="ui bottom attached red message"
+			id="login_feedback"
+			ng-if="authentication.feedback">
+			{{authentication.feedback}}
 		</section>
 	</div>
 </section>

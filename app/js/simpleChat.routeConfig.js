@@ -4,7 +4,8 @@ define(
 	[
 		'simpleChat.module',
 
-		'simpleChat.authenticationCtrl'
+		'simpleChat.authenticationCtrl',
+		'simpleChat.widget.ngEnter'
 	],
 	function(app) {
 		'use strict';
@@ -25,10 +26,7 @@ define(
 					{
 						url: '/login',
 						templateUrl: 'partials/authentication/login.html',
-						controller: 'AuthenticationCtrl as authentication',
-						resolve: {
-							'currentUser': getCurrentUser
-						}
+						controller: 'AuthenticationCtrl as authentication'
 					}
 				);
 

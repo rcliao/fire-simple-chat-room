@@ -10,7 +10,7 @@ require.config({
 		'angular.ui-router': '/app/libs/angular-ui-router/release/angular-ui-router',
 
 		// firebase
-		'angular-firebase': '/app/libs/angularfire/angularfire',
+		'angular-firebase': '/app/libs/angularfire/dist/angularfire',
 		'firebase': '/app/libs/firebase/firebase',
 		'firebase-simple-login':
 			'/app/libs/firebase-simple-login/firebase-simple-login',
@@ -20,6 +20,9 @@ require.config({
 
 		// controllers
 		'simpleChat.chatCtrl': 'chat/chatCtrl',
+
+		// widgets
+		'simpleChat.widget.ngEnter': 'widgets/ngEnter',
 
 		// authentication
 		'simpleChat.authenticationCtrl': 'authentication/authenticationCtrl',

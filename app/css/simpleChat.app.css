@@ -102,19 +102,31 @@ body {
 /* Animations */
 #main_views.ng-enter,
 #main_views.ng-leave {
-    -webkit-transition: 0.5s all ease;
-       -moz-transition: 0.5s all ease;
-            transition: 0.5s all ease;
+    -webkit-transition: 1s all;
+       -moz-transition: 1s all;
+            transition: 1s all;
 }
 
 #main_views.ng-enter #login_form {
-    -webkit-animation: bounceInDown 0.7s ease-in;
-         -o-animation: bounceInDown 0.7s ease-in;
-            animation: bounceInDown 0.7s ease-in;
+    -webkit-animation: fadeInDown 1s;
+         -o-animation: fadeInDown 1s;
+            animation: fadeInDown 1s;
 }
 
 #main_views.ng-leave #login_form {
-    -webkit-animation: fadeOut 0.7s ease-in-out;
-         -o-animation: fadeOut 0.7s ease-in-out;
-            animation: fadeOut 0.7s ease-in-out;
+    -webkit-animation: fadeOut 0.7s;
+         -o-animation: fadeOut 0.7s;
+            animation: fadeOut 0.7s;
+}
+
+#login_feedback.ng-enter {
+    -webkit-animation: flipInX 1s;
+         -o-animation: flipInX 1s;
+            animation: flipInX 1s;
+}
+
+#login_feedback.ng-leave {
+    -webkit-animation: fadeOut 1s;
+         -o-animation: fadeOut 1s;
+            animation: fadeOut 1s;
 }
