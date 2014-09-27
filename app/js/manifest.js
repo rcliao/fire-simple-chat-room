@@ -3,20 +3,20 @@
 require.config({
 	paths: {
 		// angularjs official stuff
-		'angular': '/app/libs/angular/angular',
-		'angular-animate': '/app/libs/angular-animate/angular-animate',
+		'angular': '../libs/angular/angular',
+		'angular-animate': '../libs/angular-animate/angular-animate',
 
 		// angularjs-ui components
-		'angular.ui-router': '/app/libs/angular-ui-router/release/angular-ui-router',
+		'angular.ui-router': '../libs/angular-ui-router/release/angular-ui-router',
 
 		// firebase
-		'angular-firebase': '/app/libs/angularfire/dist/angularfire',
-		'firebase': '/app/libs/firebase/firebase',
+		'angular-firebase': '../libs/angularfire/dist/angularfire',
+		'firebase': '../libs/firebase/firebase',
 		'firebase-simple-login':
-			'/app/libs/firebase-simple-login/firebase-simple-login',
+			'../libs/firebase-simple-login/firebase-simple-login',
 
 		// jquery for the semantic
-		'jquery': '/app/libs/jquery/dist/jquery.min',
+		'jquery': '../libs/jquery/dist/jquery.min',
 
 		// controllers
 		'simpleChat.chatCtrl': 'chat/chatCtrl',
