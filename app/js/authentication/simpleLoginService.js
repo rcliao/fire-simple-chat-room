@@ -18,13 +18,25 @@ define(
 
 		function SimpleLoginService ($rootScope, $log, $firebase, $firebaseSimpleLogin) {
 			var ref = new Firebase('https://fire-chat-room.firebaseio.com/');
+			var existingUserRef = new Firebase('https://fire-chat-room.firebaseio.com')
+				.child('users');
 
-			$rootScope.user = $firebaseSimpleLogin(ref).$getCurrentUser() || undefined;
+			$firebaseSimpleLogin(ref)
+				.$getCurrentUser()
+				.then(updateUser);
 
 			// listener to login
 			$rootScope.$on('$firebaseSimpleLogin:login', storeUser);
 
 			return $firebaseSimpleLogin(ref);
+
+			function updateUser (user) {
+				var userRef = existingUserRef.child(user.id);
+
+				$rootScope.user = $firebase(userRef)
+					.$asObject();
+				console.log($rootScope.user);
+			}
 
 			function storeUser (event, user) {
 				if (event) {
@@ -32,11 +44,9 @@ define(
 
 				}
 				if (user) {
-					var existingUserRef = new Firebase('https://fire-chat-room.firebaseio.com')
-						.child('users');
-
 					var existingUser = $firebase(existingUserRef)
-						.$asObject().$value;
+						.$asObject()
+						.$value;
 
 					if(!existingUser) {
 						// save new user's profile into Firebase so we can

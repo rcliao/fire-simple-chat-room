@@ -4,8 +4,12 @@ define(
 	[
 		'simpleChat.module',
 
+		// widgets
+		'simpleChat.widget.ngEnter',
+
+		// controllers
 		'simpleChat.authenticationCtrl',
-		'simpleChat.widget.ngEnter'
+		'simpleChat.chatCtrl'
 	],
 	function(app) {
 		'use strict';
@@ -27,6 +31,14 @@ define(
 						url: '/login',
 						templateUrl: 'partials/authentication/login.html',
 						controller: 'AuthenticationCtrl as authentication'
+					}
+				)
+				.state(
+					'chat',
+					{
+						url: '/chat/:roomName',
+						templateUrl:  'partials/chat/chat.html',
+						controller: 'ChatCtrl as chat'
 					}
 				);
 

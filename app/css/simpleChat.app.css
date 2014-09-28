@@ -70,33 +70,114 @@ body {
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 
-/* top level definition */
-#chat_container {
+/* top level chat definition */
+.height-inherit {
     height: 100%;
-    padding-left: 0;
-    padding-right: 0;
-
-    background-color: rgba(255, 255, 255, 0.4);
 }
 
-#chat_container>header {
-    padding-left: 1em;
-    padding-right: 1em;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+#chat_container {
+    background-color: rgba(255, 255, 255, 0.5);
 
-    background-color: rgba(0, 0, 0, 0.4);
-    font-size: 18px;
-
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    /* to override the grid system in semantic */
+    margin: 0;
+    padding: 0;
 }
 
-#viewers {
-    margin-left: 0.5em;
+#chat_content_container {
+    height: 612px; /* Fallback! **/
+    height: -webkit-calc(100% - 92px); /* Ch <26, Saf 6, BB 10 */
+    height:    -moz-calc(100% - 92px); /* Fx <16 */
+    height:         calc(100% - 92px); /* IE 9+, Fx 16+, Ch 26+ */
+}
 
-    font-size: 12px;
+.messages {
+    position: relative;
+    display: block;
+    list-style: none;
 
-    color: #FFB5E2;
+    margin: 0 2em;
+    padding: 0 1em;
+}
+
+.message img.ui.avatar,
+.my-message img.ui.avatar {
+    width: 3em;
+    height: 3em;
+}
+
+.message img.ui.avatar {
+    float: left;
+}
+.my-message img.ui.avatar {
+    float: right;
+}
+
+.message .content,
+.my-message .content {
+    display: inline-block;
+
+    padding: 0.35em;
+    margin-bottom: 0.4em;
+    margin-left: 1em;
+    margin-right: 1em;
+
+    max-width: 100%;
+
+    position: relative;
+    background: #d56687;
+
+    border-radius: 0.3em;
+}
+
+.my-message .content {
+    float: right;
+}
+
+.message .content:after,
+.message .content:before {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.message .content:after {
+    border-color: rgba(213, 102, 135, 0);
+    border-right-color: #d56687;
+    border-width: 8px;
+    margin-top: -8px;
+}
+
+.my-message .content:after,
+.my-message .content:before {
+    left: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.my-message .content:after {
+    border-color: rgba(213, 102, 135, 0);
+    border-left-color: #d56687;
+    border-width: 8px;
+    margin-top: -8px;
+}
+
+.message .content .text {
+    margin-left: 1em;
+}
+
+.my-message .content .text {
+    float: right;
+    margin-right: 1em;
 }
 
 /* Animations */

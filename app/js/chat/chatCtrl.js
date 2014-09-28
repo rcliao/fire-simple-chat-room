@@ -1,25 +1,45 @@
+/*global define, Firebase*/
+
 define(
 	[
-		'simpleChat.module'
+		'simpleChat.module',
+		'firebase'
 	],
 	function(app) {
-		return app.controller('ChatCtrl', ['$scope', '$firebase',
-			function($scope, $firebase) {
-				var messageRef = new Firebase(
-					'https://fire-chat-room.firebaseio.com/messages');
+		'use strict';
 
-				$scope.messages = $firebase(messageRef);
+		ChatCtrl.$inject = [
+			'$rootScope',
+			'$scope',
+			'$state',
+			'$stateParams',
+			'$firebase'
+		];
 
-				$scope.addMessage = function(event) {
-					if (event.keyCode != 13) return;
+		return app.controller('ChatCtrl', ChatCtrl);
 
-					$scope.messages.$add({
-						author: {name: 'guest'},
-						message: $scope.message
-					});
+		function ChatCtrl ($rootScope, $scope, $state, $stateParams, $firebase) {
+			var vm = this;
+			var chatRef = new Firebase('https://fire-chat-room.firebaseio.com/')
+				.child('messages')
+				.child($stateParams.roomName);
 
-					$scope.message = '';
-				};
-		}]);
+			vm.user = $rootScope.user;
+			vm.chatRoomName = $stateParams.roomName;
+			vm.messages = $firebase(chatRef).$asArray();
+			vm.saySomething = saySomething;
+
+			function saySomething () {
+				vm.messages.$add(
+					{
+						author: vm.user.displayName,
+						timestamp: new Date(),
+						text: vm.message.text
+					}
+				);
+
+				vm.message.text = '';
+			}
+		}
 	}
 );

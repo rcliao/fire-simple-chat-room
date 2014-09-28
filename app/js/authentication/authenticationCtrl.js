@@ -13,6 +13,9 @@ define(
 				'$scope',
 				'$log',
 				'$timeout',
+
+				'$state',
+
 				'SimpleLoginService'
 			];
 
@@ -21,6 +24,7 @@ define(
 
 		function AuthenticationCtrl (
 				$scope, $log, $timeout,
+				$state,
 				SimpleLoginService
 			) {
 
@@ -55,34 +59,42 @@ define(
 			}
 
 			function login () {
-				SimpleLoginService.$login(
-					'password',
-					vm.user
-				)
-				.then(loginSuccess, loginError);
-
-				function loginSuccess (user) {
-					vm.feedback = 'Welcome, ' + user.email;
-					removeFeedbackLater();
-				}
-
-				function loginError (error) {
-					vm.feedback = 'Failed to login, reason ' + error;
-					removeFeedbackLater();
-				}
-
+				SimpleLoginService
+					.$login(
+						'password',
+						vm.user
+					)
+					.then(loginSuccess, loginError);
 			}
 
 			function loginAsGoogle () {
-				SimpleLoginService.$login('google');
+				SimpleLoginService
+					.$login('google')
+					.then(loginSuccess, loginError);
 			}
 
 			function loginAsGithub () {
-				SimpleLoginService.$login('github');
+				SimpleLoginService
+					.$login('github')
+					.then(loginSuccess, loginError);
 			}
 
 			function loginAsTwitter () {
-				SimpleLoginService.$login('twitter');
+				SimpleLoginService
+					.$login('twitter')
+					.then(loginSuccess, loginError);
+			}
+
+			function loginSuccess (user) {
+				vm.feedback = 'Welcome, ' +
+					(user.displayName || user.username || user.email);
+				removeFeedbackLater();
+				routeToChat();
+			}
+
+			function loginError (error) {
+				vm.feedback = 'Failed to login, reason ' + error;
+				removeFeedbackLater();
 			}
 
 			function removeFeedbackLater () {
@@ -93,6 +105,17 @@ define(
 				vm.feedbackId = $timeout(function() {
 					vm.feedback = undefined;
 				}, 3000);
+			}
+
+			function routeToChat () {
+				$timeout(function() {
+					$state.go(
+						'chat',
+						{
+							'roomName': 'default'
+						}
+					);
+				}, 4000);
 			}
 		}
 	}
