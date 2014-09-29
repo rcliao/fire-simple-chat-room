@@ -65,8 +65,7 @@ define(
 			/* Helper methods */
 
 			function loginSuccess (user) {
-				vm.feedback = 'Welcome, ' +
-					(user.displayName || user.username || user.email);
+				vm.feedback = 'Welcome, ' + user.displayName;
 				removeFeedbackLater();
 
 				vm.loading = false;

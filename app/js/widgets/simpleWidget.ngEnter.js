@@ -2,7 +2,7 @@
 
 define(
 	[
-		'simpleChat.module'
+		'simpleWidget.module'
 	],
 	function(app) {
 		'use strict';

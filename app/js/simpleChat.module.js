@@ -10,7 +10,10 @@ define(
 
 		'firebase',
 		'angular-firebase',
-		'firebase-simple-login'
+		'firebase-simple-login',
+
+		// custom widgets
+		'simpleWidget.module'
 	],
 	function (angular) {
 		'use strict';
@@ -22,7 +25,8 @@ define(
 					'ngAnimate',
 					'ui.router',
 					'ui.bootstrap',
-					'firebase'
+					'firebase',
+					'simpleWidget'
 				]
 			).run(['$rootScope', '$log', function($rootScope, $log) {
 				$rootScope.$on('$routeChangeError', function (event, current, previous,

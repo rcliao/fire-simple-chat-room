@@ -19,11 +19,16 @@ require.config({
 		// jquery for the semantic
 		'jquery': '../libs/jquery/dist/jquery.min',
 
+		// semantic-ui
+		'semantic-ui': '../libs/semantic/build/packaged/javascript/semantic',
+
 		// controllers
 		'simpleChat.chatCtrl': 'chat/chatCtrl',
 
 		// widgets
-		'simpleChat.widget.ngEnter': 'widgets/ngEnter',
+		'simpleWidget.module': 'widgets/simpleWidget.module',
+		'simpleWidget.ngEnter': 'widgets/simpleWidget.ngEnter',
+		'simpleWidget.semanticPopUp': 'widgets/simpleWidget.semanticPopUp',
 
 		// authentication
 		'simpleChat.authenticationCtrl': 'authentication/authenticationCtrl',
@@ -51,6 +56,9 @@ require.config({
 		},
 		'firebase': {
 			exports: 'Firebase'
+		},
+		'semantic-ui': {
+			deps: ['jquery']
 		}
 	}
 });

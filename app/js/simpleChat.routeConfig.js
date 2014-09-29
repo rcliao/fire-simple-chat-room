@@ -4,12 +4,13 @@ define(
 	[
 		'simpleChat.module',
 
-		// widgets
-		'simpleChat.widget.ngEnter',
-
 		// controllers
 		'simpleChat.authenticationCtrl',
-		'simpleChat.chatCtrl'
+		'simpleChat.chatCtrl',
+
+		// widgets
+		'simpleWidget.ngEnter',
+		'simpleWidget.semanticPopUp'
 	],
 	function(app) {
 		'use strict';
