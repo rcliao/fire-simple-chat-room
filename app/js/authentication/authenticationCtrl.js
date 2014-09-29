@@ -13,6 +13,7 @@ define(
 				'$scope',
 				'$log',
 				'$timeout',
+				'$q',
 
 				'$state',
 
@@ -23,7 +24,7 @@ define(
 			.controller('AuthenticationCtrl', AuthenticationCtrl);
 
 		function AuthenticationCtrl (
-				$scope, $log, $timeout,
+				$scope, $log, $timeout, $q,
 				$state,
 				SimpleLoginService
 			) {
@@ -52,13 +53,13 @@ define(
 						login();
 					} else {
 						vm.feedback = 'Failed to register: ' + error;
-						removeFeedbackLater();
+						removeFeedbackLater(4000);
 					}
 				}
 
 				function registerError (error) {
 					vm.feedback = 'Failed to register, reason: ' + error;
-					removeFeedbackLater();
+					removeFeedbackLater(4000);
 				}
 			}
 
@@ -72,20 +73,23 @@ define(
 			/* Helper methods */
 
 			function loginSuccess (user) {
-				vm.feedback = 'Welcome, ' + (user.displayName || user.email);
+				vm.feedback = 'Welcome, ' + (user.displayName || user.email) +
+					'\n' +
+					'Redirecting to the public chatroom...';
 
-				removeFeedbackLater();
-
-				routeToChat();
+				removeFeedbackLater(2000)
+					.then(routeToChat);
 			}
 
 			function loginError (error) {
 				vm.feedback = 'Failed to login, reason ' + error;
 
-				removeFeedbackLater();
+				removeFeedbackLater(4000);
 			}
 
-			function removeFeedbackLater () {
+			function removeFeedbackLater (removeTimer) {
+				var deferred = $q.defer();
+
 				vm.loading = false;
 
 				if (vm.feedbackId) {
@@ -94,7 +98,10 @@ define(
 
 				vm.feedbackId = $timeout(function() {
 					vm.feedback = undefined;
-				}, 4000);
+					deferred.resolve();
+				}, removeTimer);
+
+				return deferred.promise;
 			}
 
 			function routeToChat () {

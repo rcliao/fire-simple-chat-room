@@ -6,11 +6,15 @@ define(
 		'firebase'
 	],
 	function (app) {
+		'use strict';
+
 		SimpleLoginService.$inject = [
 			'$rootScope',
 			'$log',
 			'$q',
+
 			'$state',
+
 			'$firebase',
 			'$firebaseSimpleLogin'
 		];
@@ -18,13 +22,16 @@ define(
 		return app
 			.factory('SimpleLoginService', SimpleLoginService);
 
-		function SimpleLoginService ($rootScope, $log, $q, $state, $firebase, $firebaseSimpleLogin) {
-			var ref = new Firebase('https://fire-chat-room.firebaseio.com/');
-			var existingUserRef = new Firebase('https://fire-chat-room.firebaseio.com')
-				.child('users');
-			var simpleLogin = $firebaseSimpleLogin(ref);
+		function SimpleLoginService (
+			$rootScope, $log, $q,
+			$state,
+			$firebase, $firebaseSimpleLogin) {
 
-			var tempUser;
+			var ref = new Firebase('https://fire-chat-room.firebaseio.com/');
+			var existingUserRef =
+				new Firebase('https://fire-chat-room.firebaseio.com')
+					.child('users');
+			var simpleLogin = $firebaseSimpleLogin(ref);
 
 			var service = {
 				emailLogin: emailLogin,
@@ -129,7 +136,7 @@ define(
 						});
 
 				} else {
-					console.log('wtf')
+					$log.error('wtf');
 				}
 			}
 		}

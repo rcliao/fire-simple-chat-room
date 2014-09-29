@@ -3,9 +3,10 @@
 define(
 	[
 		'simpleChat.module',
+		'angular',
 		'firebase'
 	],
-	function(app) {
+	function(app, angular) {
 		'use strict';
 
 		ChatCtrl.$inject = [
@@ -29,8 +30,7 @@ define(
 			$state, $stateParams,
 			$firebase,
 			SimpleLoginService,
-			currentUser
-		) {
+			currentUser) {
 
 			var vm = this;
 			var chatRef = new Firebase('https://fire-chat-room.firebaseio.com/')
@@ -92,7 +92,7 @@ define(
 			}
 		}
 
-		function newMessageHandler (eventWrapper) {
+		function newMessageHandler () {
 			angular.element(document).ready(function() {
 				var chatContentContainer = document
 					.getElementById('chat_content_container');
