@@ -72,7 +72,7 @@ define(
 			/* Helper methods */
 
 			function loginSuccess (user) {
-				vm.feedback = 'Welcome, ' + user.displayName || user.email;
+				vm.feedback = 'Welcome, ' + (user.displayName || user.email);
 
 				removeFeedbackLater();
 
@@ -94,7 +94,7 @@ define(
 
 				vm.feedbackId = $timeout(function() {
 					vm.feedback = undefined;
-				}, 2000);
+				}, 4000);
 			}
 
 			function routeToChat () {

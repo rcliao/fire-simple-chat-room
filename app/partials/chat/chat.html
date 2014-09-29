@@ -41,12 +41,13 @@
 
 		<section class="z-index-3 ui attached inverted segment" id="chat_content_container">
 			<div class="column">
-				<ul class="ui minimal messages" ng-repeat="message in chat.messages">
+				<ul class="ui minimal messages">
 					<li class="clearfix" ng-class="
 						{
 							'message': message.author !== chat.user,
 							'my-message': message.author === chat.user.displayName
-						}">
+						}"
+						ng-repeat="message in chat.messages">
 
 						<img class="ui avatar image"
 							ng-src="http://fc05.deviantart.net/fs70/i/2011/288/4/2/pikachu_by_zombieafterall-d4cy3zq.jpg"

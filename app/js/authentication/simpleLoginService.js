@@ -108,29 +108,25 @@ define(
 					// TODO: add handler here
 				}
 				if (user) {
-					console.log(user);
 					$firebase(
 						existingUserRef.child(user.id)
 					)
 						.$asObject()
 						.$loaded()
-						.then(storeUserInfo);
-
-					function storeUserInfo (existingUser) {
-						if(!existingUser.$value) {
-							// save new user's profile into Firebase so we can
-							// list users, use them in security rules, and show profiles
-							$firebase(existingUserRef)
-								.$set(
-									user.id,
-									{
-										displayName: user.email,
-										provider: user.provider
-									}
-								);
-						}
-					}
-
+						.then(function(existingUser) {
+							if(!existingUser.$value) {
+								// save new user's profile into Firebase so we can
+								// list users, use them in security rules, and show profiles
+								$firebase(existingUserRef)
+									.$set(
+										user.id,
+										{
+											displayName: user.email,
+											provider: user.provider
+										}
+									);
+							}
+						});
 
 				} else {
 					console.log('wtf')

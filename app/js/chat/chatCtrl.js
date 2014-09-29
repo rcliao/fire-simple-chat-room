@@ -41,6 +41,7 @@ define(
 			vm.chatRoomName = $stateParams.roomName;
 			vm.messages = $firebase(chatRef).$asArray();
 
+			vm.messages.$watch(newMessageHandler);
 			checkPresence();
 
 			vm.saySomething = saySomething;
@@ -63,10 +64,6 @@ define(
 					.logout();
 			}
 
-			function redirectToLogin () {
-				$state.go('login');
-			}
-
 			// the following will set the user to be online or offline
 			function checkPresence () {
 				var amOnline = new Firebase('https://fire-chat-room.firebaseio.com' +
@@ -81,7 +78,7 @@ define(
 					if (snapshot.val()) {
 						userRef
 							.onDisconnect()
-							.set(Firebase.ServerValue.TIMESTAMP);
+							.remove();
 						userRef.set(
 							{
 								displayName: vm.user.displayName,
@@ -93,6 +90,16 @@ define(
 
 				vm.roomPresence = $firebase(roomRef).$asArray();
 			}
+		}
+
+		function newMessageHandler (eventWrapper) {
+			angular.element(document).ready(function() {
+				var chatContentContainer = document
+					.getElementById('chat_content_container');
+
+				chatContentContainer.scrollTop =
+					chatContentContainer.scrollHeight;
+			});
 		}
 	}
 );

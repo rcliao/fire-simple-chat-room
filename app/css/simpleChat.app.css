@@ -211,3 +211,10 @@ body {
          -o-animation: fadeOutDown 0.3s;
             animation: fadeOutDown 0.3s;
 }
+
+.message.ng-enter,
+.my-message.ng-enter {
+    -webkit-animation: fadeInUp 0.5s;
+         -o-animation: fadeInUp 0.5s;
+            animation: fadeInUp 0.5s;
+}
