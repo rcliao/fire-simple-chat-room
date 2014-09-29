@@ -28,21 +28,16 @@ define(
 					'firebase',
 					'simpleWidget'
 				]
-			).run(['$rootScope', '$log', function($rootScope, $log) {
-				$rootScope.$on('$routeChangeError', function (event, current, previous,
+			).run(['$rootScope', '$state', '$log', function($rootScope, $state, $log) {
+				$rootScope.$on('$stateChangeError', function (event, current, previous,
 					rejection) {
 
-					console.log(event);
-					console.log(current);
-					console.log(previous);
-					console.log(rejection);
+					$state.go('login');
 
-					$rootScope.criticalError = true;
 					$rootScope.criticalErrorReason = rejection;
 				});
 
-				$rootScope.$on('$routeChangeSuccess', function() {
-					$rootScope.criticalError = false;
+				$rootScope.$on('$stateChangeSuccess', function() {
 					$rootScope.criticalErrorReason = '';
 				});
 			}]);

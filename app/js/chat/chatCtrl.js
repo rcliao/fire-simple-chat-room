@@ -58,8 +58,7 @@ define(
 
 			function logout () {
 				SimpleLoginService
-					.logout()
-					.then(redirectToLogin);
+					.logout();
 			}
 
 			function redirectToLogin () {
