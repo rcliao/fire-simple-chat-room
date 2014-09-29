@@ -27,6 +27,7 @@ define(
 			var service = {
 				emailLogin: emailLogin,
 				getCurrentUser: getCurrentUser,
+				logout: logout,
 				ref: simpleLogin // expose ref if necessary
 			};
 
@@ -61,6 +62,10 @@ define(
 							.child(user.id)
 					).$asObject();
 				}
+			}
+
+			function logout () {
+				return simpleLogin.$logout();
 			}
 
 			// update the rootscope user based on the current user in firebase
