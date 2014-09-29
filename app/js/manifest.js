@@ -8,6 +8,7 @@ require.config({
 
 		// angularjs-ui components
 		'angular.ui-router': '../libs/angular-ui-router/release/angular-ui-router',
+		'angular.ui-bootstrap': '../libs/angular-bootstrap/ui-bootstrap-tpls',
 
 		// firebase
 		'angular-firebase': '../libs/angularfire/dist/angularfire',
@@ -40,6 +41,9 @@ require.config({
 			deps: ['angular']
 		},
 		'angular.ui-router': {
+			deps: ['angular']
+		},
+		'angular.ui-bootstrap': {
 			deps: ['angular']
 		},
 		'angular-firebase': {

@@ -13,18 +13,19 @@ define(
 			'$scope',
 			'$state',
 			'$stateParams',
-			'$firebase'
+			'$firebase',
+			'currentUser'
 		];
 
 		return app.controller('ChatCtrl', ChatCtrl);
 
-		function ChatCtrl ($rootScope, $scope, $state, $stateParams, $firebase) {
+		function ChatCtrl ($rootScope, $scope, $state, $stateParams, $firebase, currentUser) {
 			var vm = this;
 			var chatRef = new Firebase('https://fire-chat-room.firebaseio.com/')
 				.child('messages')
 				.child($stateParams.roomName);
 
-			vm.user = $rootScope.user;
+			vm.user = currentUser;
 			vm.chatRoomName = $stateParams.roomName;
 			vm.messages = $firebase(chatRef).$asArray();
 			vm.saySomething = saySomething;

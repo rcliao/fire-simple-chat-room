@@ -76,18 +76,16 @@ body {
 }
 
 #chat_container {
-    background-color: rgba(255, 255, 255, 0.5);
-
     /* to override the grid system in semantic */
     margin: 0;
     padding: 0;
 }
 
 #chat_content_container {
-    height: 612px; /* Fallback! **/
-    height: -webkit-calc(100% - 92px); /* Ch <26, Saf 6, BB 10 */
-    height:    -moz-calc(100% - 92px); /* Fx <16 */
-    height:         calc(100% - 92px); /* IE 9+, Fx 16+, Ch 26+ */
+    height: 624px; /* Fallback! **/
+    height: -webkit-calc(100% - 104px); /* Ch <26, Saf 6, BB 10 */
+    height:    -moz-calc(100% - 104px); /* Fx <16 */
+    height:         calc(100% - 104px); /* IE 9+, Fx 16+, Ch 26+ */
 }
 
 .messages {
@@ -95,8 +93,8 @@ body {
     display: block;
     list-style: none;
 
-    margin: 0 2em;
-    padding: 0 1em;
+    margin: 0;
+    padding: 0;
 }
 
 .message img.ui.avatar,
@@ -201,13 +199,13 @@ body {
 }
 
 #login_feedback.ng-enter {
-    -webkit-animation: flipInX 1s;
-         -o-animation: flipInX 1s;
-            animation: flipInX 1s;
+    -webkit-animation: fadeInUp 0.3s;
+         -o-animation: fadeInUp 0.3s;
+            animation: fadeInUp 0.3s;
 }
 
 #login_feedback.ng-leave {
-    -webkit-animation: fadeOut 1s;
-         -o-animation: fadeOut 1s;
-            animation: fadeOut 1s;
+    -webkit-animation: fadeOutDown 0.3s;
+         -o-animation: fadeOutDown 0.3s;
+            animation: fadeOutDown 0.3s;
 }

@@ -20,7 +20,17 @@ define(
 			var ref = new Firebase('https://fire-chat-room.firebaseio.com/');
 			var existingUserRef = new Firebase('https://fire-chat-room.firebaseio.com')
 				.child('users');
+			var simpleLogin = $firebaseSimpleLogin(ref);
 
+			var tempUser;
+
+			var service = {
+				emailLogin: emailLogin,
+				getCurrentUser: getCurrentUser,
+				ref: simpleLogin // expose ref if necessary
+			};
+
+			// when user gets to the page, get the current user from firebase
 			$firebaseSimpleLogin(ref)
 				.$getCurrentUser()
 				.then(updateUser);
@@ -28,25 +38,48 @@ define(
 			// listener to login
 			$rootScope.$on('$firebaseSimpleLogin:login', storeUser);
 
-			return $firebaseSimpleLogin(ref);
+			return service;
 
+			function emailLogin (user) {
+				return simpleLogin
+					.$login(
+						'password',
+						{
+							email: user.email,
+							password: user.password
+						}
+					);
+			}
+
+			function getCurrentUser () {
+				return simpleLogin.$getCurrentUser()
+					.then(getUserFromDatabase);
+
+				function getUserFromDatabase (user) {
+					return $firebase(
+						existingUserRef
+							.child(user.id)
+					).$asObject();
+				}
+			}
+
+			// update the rootscope user based on the current user in firebase
 			function updateUser (user) {
-				var userRef = existingUserRef.child(user.id);
+				if(user) {
+					var userRef = existingUserRef.child(user.id);
 
-				$rootScope.user = $firebase(userRef)
-					.$asObject();
-				console.log($rootScope.user);
+					$rootScope.user = $firebase(userRef)
+						.$asObject();
+				}
 			}
 
 			function storeUser (event, user) {
 				if (event) {
 					// TODO: add handler here
-
 				}
 				if (user) {
 					var existingUser = $firebase(existingUserRef)
-						.$asObject()
-						.$value;
+						.$asObject();
 
 					if(!existingUser) {
 						// save new user's profile into Firebase so we can
@@ -55,7 +88,7 @@ define(
 							.$set(
 								user.id,
 								{
-									displayName: user.displayName || user.email || user.username,
+									displayName: tempUser.displayName,
 									provider: user.provider
 								}
 							);

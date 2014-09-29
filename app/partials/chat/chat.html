@@ -1,47 +1,58 @@
 <section class="ui one column page grid height-inherit">
-	<section class="column z-index-3 height-inherit" id="chat_container">
-		<header class="ui red inverted menu z-index-3">
-			<div class="header item">
+	<div class="column height-inherit" id="chat_container">
+		<header class="ui top attached red inverted menu">
+			<div class="item">
 				<i class="chat outline icon"></i>
 				Simple Chat
 			</div>
 
 			<div class="right menu">
-				<div class="header item">
-					<i class="users icon"></i>
-					<span class="ui label">6</span>
+				<div class="item">
+					<span class="ui label">
+						<i class="users icon"></i>
+						6
+					</span>
+				</div>
+				<div class="item">
+					<a class="ui image label" tooltip-placement="bottom" tooltip="Log Out">
+						<img src="http://automobilein.com/wp-content/uploads/2014/02/Pikachu-Iphone-Wallpaper.jpg"
+							alt="Profile photo">
+						{{chat.user.displayName}}
+					</a>
 				</div>
 			</div>
 		</header>
 
-		<div class="column" id="chat_content_container">
-			<ul class="ui minimal messages" ng-repeat="message in chat.messages">
-				<li class="clearfix" ng-class="
-					{
-						'message': message.author !== chat.user,
-						'my-message': message.author === chat.user.displayName
-					}">
-					<img class="ui avatar image"
-						ng-src="{{user.profileImage}}"
-						alt="profile image">
-					<div class="content">
-						<a class="author">
-							{{message.author}}
-						</a>
-						<span class="metadata">
-							<span class="date">
-								{{message.timestamp}}
+		<section class="z-index-3 ui attached inverted segment" id="chat_content_container">
+			<div class="column">
+				<ul class="ui minimal messages" ng-repeat="message in chat.messages">
+					<li class="clearfix" ng-class="
+						{
+							'message': message.author !== chat.user,
+							'my-message': message.author === chat.user.displayName
+						}">
+						<img class="ui avatar image"
+							ng-src="http://fc05.deviantart.net/fs70/i/2011/288/4/2/pikachu_by_zombieafterall-d4cy3zq.jpg"
+							alt="profile image">
+						<div class="content">
+							<a class="author">
+								{{message.author}}
+							</a>
+							<span class="metadata">
+								<span class="date">
+									{{message.timestamp}}
+								</span>
 							</span>
-						</span>
-						<div class="text">
-							{{message.text}}
+							<div class="text">
+								{{message.text}}
+							</div>
 						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
+					</li>
+				</ul>
+			</div>
+		</section>
 
-		<footer>
+		<footer class="ui bottom attached red message">
 			<div class="ui left icon action fluid input">
 				<i class="comment outline icon"></i>
 				<input type="text" autofocus placeholder="Say something..."
@@ -52,5 +63,5 @@
 				</div>
 			</div>
 		</footer>
-	</section>
+	</div>
 </section>

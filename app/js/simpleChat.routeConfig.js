@@ -38,12 +38,15 @@ define(
 					{
 						url: '/chat/:roomName',
 						templateUrl:  'partials/chat/chat.html',
-						controller: 'ChatCtrl as chat'
+						controller: 'ChatCtrl as chat',
+						resolve: {
+							currentUser: getCurrentUser
+						}
 					}
 				);
 
 			function getCurrentUser (SimpleLoginService) {
-				return SimpleLoginService.$getCurrentUser();
+				return SimpleLoginService.getCurrentUser();
 			}
 		}
 	}

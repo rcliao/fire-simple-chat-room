@@ -32,9 +32,6 @@ define(
 
 			vm.register = register;
 			vm.login = login;
-			vm.loginAsGoogle = loginAsGoogle;
-			vm.loginAsGithub = loginAsGithub;
-			vm.loginAsTwitter = loginAsTwitter;
 
 			function register () {
 				SimpleLoginService.$createUser(
@@ -59,36 +56,20 @@ define(
 			}
 
 			function login () {
+				vm.loading = true;
 				SimpleLoginService
-					.$login(
-						'password',
-						vm.user
-					)
+					.emailLogin(vm.user)
 					.then(loginSuccess, loginError);
 			}
 
-			function loginAsGoogle () {
-				SimpleLoginService
-					.$login('google')
-					.then(loginSuccess, loginError);
-			}
-
-			function loginAsGithub () {
-				SimpleLoginService
-					.$login('github')
-					.then(loginSuccess, loginError);
-			}
-
-			function loginAsTwitter () {
-				SimpleLoginService
-					.$login('twitter')
-					.then(loginSuccess, loginError);
-			}
+			/* Helper methods */
 
 			function loginSuccess (user) {
 				vm.feedback = 'Welcome, ' +
 					(user.displayName || user.username || user.email);
 				removeFeedbackLater();
+
+				vm.loading = false;
 				routeToChat();
 			}
 
@@ -104,18 +85,16 @@ define(
 
 				vm.feedbackId = $timeout(function() {
 					vm.feedback = undefined;
-				}, 3000);
+				}, 2000);
 			}
 
 			function routeToChat () {
-				$timeout(function() {
-					$state.go(
-						'chat',
-						{
-							'roomName': 'default'
-						}
-					);
-				}, 4000);
+				$state.go(
+					'chat',
+					{
+						'roomName': 'default'
+					}
+				);
 			}
 		}
 	}
