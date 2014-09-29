@@ -14,10 +14,21 @@
 					</span>
 				</div>
 				<div class="item">
-					<a class="ui image label" semantic-pop-up data-content="Hello, I am a pop-up.">
+					<a class="ui image label dropdown" semantic-dropdown>
 						<img src="http://automobilein.com/wp-content/uploads/2014/02/Pikachu-Iphone-Wallpaper.jpg"
 							alt="Profile photo">
 						{{chat.user.displayName}}
+						<div class="menu">
+							<div class="item">
+								Upload Profile Image
+							</div>
+							<div class="item">
+								Change Password
+							</div>
+							<div class="item" ng-click="chat.logout()">
+								Log Out
+							</div>
+						</div>
 					</a>
 				</div>
 			</div>
@@ -40,7 +51,7 @@
 							</a>
 							<span class="metadata">
 								<span class="date">
-									{{message.timestamp}}
+									{{message.timestamp | date:'short'}}
 								</span>
 							</span>
 							<div class="text">

@@ -10,7 +10,8 @@ define(
 
 		// widgets
 		'simpleWidget.ngEnter',
-		'simpleWidget.semanticPopUp'
+		'simpleWidget.semanticPopUp',
+		'simpleWidget.semanticDropdown'
 	],
 	function(app) {
 		'use strict';
