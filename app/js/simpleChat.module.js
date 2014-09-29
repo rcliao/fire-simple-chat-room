@@ -33,7 +33,6 @@ define(
 					rejection) {
 
 					$state.go('login');
-
 					$rootScope.criticalErrorReason = rejection;
 				});
 

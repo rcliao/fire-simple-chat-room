@@ -66,13 +66,20 @@ define(
 							$firebase(
 								existingUserRef
 									.child(user.id)
-							).$asObject()
+							)
+							.$asObject()
+							.$loaded()
+							.then(returnUserObject)
 						);
 					} else {
 						deferred.reject('Failed to find user in database.');
 					}
 
 					return deferred.promise;
+
+					function returnUserObject (user) {
+						return user;
+					}
 				}
 			}
 

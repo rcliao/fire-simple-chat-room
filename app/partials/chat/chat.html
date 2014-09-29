@@ -1,6 +1,7 @@
 <section class="ui one column page grid height-inherit">
 	<div class="column height-inherit" id="chat_container">
 		<header class="ui top attached red inverted menu">
+
 			<div class="item">
 				<i class="chat outline icon"></i>
 				Simple Chat
@@ -8,22 +9,26 @@
 
 			<div class="right menu">
 				<div class="item">
-					<span class="ui label">
+					<span class="ui label dropdown" semantic-dropdown>
 						<i class="users icon"></i>
-						6
+						{{chat.roomPresence.length}}
+						<div class="menu">
+							<div class="item"
+								ng-repeat="presence in chat.roomPresence">
+								{{presence.displayName}}
+							</div>
+						</div>
 					</span>
 				</div>
+
 				<div class="item">
 					<a class="ui image label dropdown" semantic-dropdown>
 						<img src="http://automobilein.com/wp-content/uploads/2014/02/Pikachu-Iphone-Wallpaper.jpg"
 							alt="Profile photo">
 						{{chat.user.displayName}}
 						<div class="menu">
-							<div class="item">
+							<div class="item disabled">
 								Upload Profile Image
-							</div>
-							<div class="item">
-								Change Password
 							</div>
 							<div class="item" ng-click="chat.logout()">
 								Log Out
@@ -42,18 +47,22 @@
 							'message': message.author !== chat.user,
 							'my-message': message.author === chat.user.displayName
 						}">
+
 						<img class="ui avatar image"
 							ng-src="http://fc05.deviantart.net/fs70/i/2011/288/4/2/pikachu_by_zombieafterall-d4cy3zq.jpg"
 							alt="profile image">
+
 						<div class="content">
 							<a class="author">
 								{{message.author}}
 							</a>
+
 							<span class="metadata">
 								<span class="date">
 									{{message.timestamp | date:'short'}}
 								</span>
 							</span>
+
 							<div class="text">
 								{{message.text}}
 							</div>
