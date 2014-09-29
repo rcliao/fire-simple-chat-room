@@ -28,13 +28,20 @@ define(
 				SimpleLoginService
 			) {
 
+			var user = SimpleLoginService
+				.getCurrentUser()
+
+			if (user.displayName) {
+				routeToChat();
+			}
+
 			var vm = this;
 
 			vm.register = register;
 			vm.login = login;
 
 			function register () {
-				SimpleLoginService.$createUser(
+				SimpleLoginService.createUser(
 					vm.user.email,
 					vm.user.password
 				)
@@ -65,19 +72,22 @@ define(
 			/* Helper methods */
 
 			function loginSuccess (user) {
-				vm.feedback = 'Welcome, ' + user.displayName;
+				vm.feedback = 'Welcome, ' + user.displayName || user.email;
+
 				removeFeedbackLater();
 
-				vm.loading = false;
 				routeToChat();
 			}
 
 			function loginError (error) {
 				vm.feedback = 'Failed to login, reason ' + error;
+
 				removeFeedbackLater();
 			}
 
 			function removeFeedbackLater () {
+				vm.loading = false;
+
 				if (vm.feedbackId) {
 					$timeout.cancel(vm.feedbackId);
 				}

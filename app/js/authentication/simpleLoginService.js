@@ -30,6 +30,7 @@ define(
 				emailLogin: emailLogin,
 				getCurrentUser: getCurrentUser,
 				logout: logout,
+				createUser: createUser,
 				ref: simpleLogin // expose ref if necessary
 			};
 
@@ -83,6 +84,10 @@ define(
 				}
 			}
 
+			function createUser (email, password) {
+				return simpleLogin.$createUser(email, password);
+			}
+
 			function logout () {
 				simpleLogin.$logout();
 				$state.go('login');
@@ -103,21 +108,29 @@ define(
 					// TODO: add handler here
 				}
 				if (user) {
-					var existingUser = $firebase(existingUserRef)
-						.$asObject();
+					console.log(user);
+					$firebase(
+						existingUserRef.child(user.id)
+					)
+						.$asObject()
+						.$loaded()
+						.then(storeUserInfo);
 
-					if(!existingUser) {
-						// save new user's profile into Firebase so we can
-						// list users, use them in security rules, and show profiles
-						$firebase(existingUserRef)
-							.$set(
-								user.id,
-								{
-									displayName: tempUser.displayName,
-									provider: user.provider
-								}
-							);
+					function storeUserInfo (existingUser) {
+						if(!existingUser.$value) {
+							// save new user's profile into Firebase so we can
+							// list users, use them in security rules, and show profiles
+							$firebase(existingUserRef)
+								.$set(
+									user.id,
+									{
+										displayName: user.email,
+										provider: user.provider
+									}
+								);
+						}
 					}
+
 
 				} else {
 					console.log('wtf')
