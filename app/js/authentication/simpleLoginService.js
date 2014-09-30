@@ -131,7 +131,8 @@ define(
 										user.id,
 										{
 											displayName: user.email,
-											provider: user.provider
+											provider: user.provider,
+											email: user.email
 										}
 									);
 							}
