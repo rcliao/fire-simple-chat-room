@@ -8,33 +8,56 @@
 			</div>
 
 			<div class="right menu">
-				<div class="item">
-					<span class="ui label dropdown" semantic-dropdown>
-						<i class="users icon"></i>
-						{{chat.roomPresence.length}}
-						<div class="menu">
-							<div class="item"
-								ng-repeat="presence in chat.roomPresence">
-								{{presence.displayName}}
-							</div>
+				<div class="item link ui left top pointing dropdown" semantic-dropdown>
+					<i class="users large icon"></i>
+					{{chat.roomPresence.length}}
+					<div class="menu">
+						<div class="item"
+							ng-repeat="presence in chat.roomPresence">
+							{{presence.displayName}}
 						</div>
-					</span>
+					</div>
 				</div>
 
-				<div class="item">
-					<a class="ui image label dropdown" semantic-dropdown>
-						<img src="http://automobilein.com/wp-content/uploads/2014/02/Pikachu-Iphone-Wallpaper.jpg"
-							alt="Profile photo">
-						{{chat.user.displayName}}
-						<div class="menu">
-							<div class="item disabled">
-								Upload Profile Image
-							</div>
-							<div class="item" ng-click="chat.logout()">
-								Log Out
-							</div>
+				<div class="item ui pointing dropdown" semantic-dropdown>
+					<img src="http://automobilein.com/wp-content/uploads/2014/02/Pikachu-Iphone-Wallpaper.jpg"
+						class="ui image tiny avatar"
+						alt="Profile photo">
+					{{chat.user.displayName}}
+					<div class="menu">
+						<div class="item disabled">
+							<i class="icon photo"></i>
+							Upload Profile Image
 						</div>
-					</a>
+						<div class="item" ng-click="chat.changePassword()">
+							<i class="icon key"></i>
+							Change Password
+						</div>
+						<div class="item" ng-click="chat.logout()">
+							<i class="icon sign out"></i>
+							Log Out
+						</div>
+					</div>
+				</div>
+
+				<div class="item ui pointing top right dropdown" semantic-dropdown>
+					<i class="large icon info animated pulse infinite"></i>
+
+					<span ng-show="chat.notifications.length > 0">
+						{{chat.notifications.length}}
+					</span>
+
+					<div class="menu" ng-show="chat.notifications.length > 0">
+						<div class="item"
+							ng-repeat="notification in chat.notifications">
+							<i class="icon {{notification.icon}}"></i>
+							{{notification.summary}}
+							{{notification.detail}}
+							<i class="icon close"
+								ng-click="chat.dismissNotification($index)">
+							</i>
+						</div>
+					</div>
 				</div>
 			</div>
 		</header>
@@ -86,3 +109,38 @@
 		</footer>
 	</div>
 </section>
+
+<div class="ui basic modal" id="change_password_form">
+	<i class="close icon"></i>
+	<div class="header">
+		Change your password here
+	</div>
+	<div class="content">
+		<div class="left">
+			<div class="ui fluid labeled input">
+				<input type="password" placeholder="Old Password"
+					ng-model="chat.oldPassword">
+				<div class="ui corner label">
+					<i class="asterisk icon"></i>
+				</div>
+			</div>
+		</div>
+		<div class="right">
+			<div class="ui fluid labeled input">
+				<input type="password" placeholder="New Password"
+					ng-model="chat.newPassword">
+				<div class="ui corner label">
+					<i class="asterisk icon"></i>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="actions">
+		<div class="ui deny button">
+			Cancel
+		</div>
+		<div class="ui approve button">
+			Okay
+		</div>
+	</div>
+</div>

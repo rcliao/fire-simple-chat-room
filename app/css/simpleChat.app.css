@@ -83,6 +83,7 @@ body {
 
 #chat_content_container {
     overflow-y: auto;
+    overflow-x: hidden;
 
     height: 624px; /* Fallback! **/
     height: -webkit-calc(100% - 104px); /* Ch <26, Saf 6, BB 10 */

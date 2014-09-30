@@ -1,0 +1,60 @@
+<section class="ui one column page grid height-inherit">
+	<div class="column height-inherit" id="chat_container">
+		<header class="ui top attached red inverted menu">
+
+			<div class="item">
+				<i class="chat outline icon"></i>
+				Admin Panel
+			</div>
+
+			<div class="right menu">
+				<div class="item">
+					<a class="ui image label dropdown" semantic-dropdown>
+						<img src="http://automobilein.com/wp-content/uploads/2014/02/Pikachu-Iphone-Wallpaper.jpg"
+							alt="Profile photo">
+						{{admin.user.displayName}}
+						<div class="menu">
+							<div class="item" ng-click="admin.logout()">
+								Log Out
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</header>
+
+		<section class="z-index-3 ui attached inverted segment" id="chat_content_container">
+			<div class="ui grid">
+				<div class="three wide column">
+					<div class="ui inverted secondary vertical pointing menu">
+						<a class="active item">
+							<i class="home icon"></i> Overview
+						</a>
+						<a class="item" ui-sref="admin.users">
+							<i class="mail icon"></i> User Permission
+						</a>
+						<a class="item" ui-sref="admin.rooms">
+							<i class="user icon"></i> Room Permission
+						</a>
+					</div>
+				</div>
+
+				<div class="thirteen wide column" ui-view>
+
+				</div>
+			</div>
+		</section>
+
+		<footer class="ui bottom attached red message">
+			<div class="ui left icon action fluid input">
+				<i class="comment outline icon"></i>
+				<input type="text" autofocus placeholder="Command me ..."
+					ng-model="admin.command"
+					ng-enter="admin.parseCommand()">
+				<div class="ui red button" ng-click="admin.parseCommand()">
+					Command
+				</div>
+			</div>
+		</footer>
+	</div>
+</section>

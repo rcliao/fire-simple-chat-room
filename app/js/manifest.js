@@ -22,8 +22,11 @@ require.config({
 		// semantic-ui
 		'semantic-ui': '../libs/semantic/build/packaged/javascript/semantic',
 
-		// controllers
+		// chat
 		'simpleChat.chatCtrl': 'chat/chatCtrl',
+
+		// admin
+		'simpleChat.adminCtrl': 'admin/adminCtrl',
 
 		// widgets
 		'simpleWidget.module': 'widgets/simpleWidget.module',

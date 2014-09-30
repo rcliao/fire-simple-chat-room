@@ -38,6 +38,8 @@ define(
 				getCurrentUser: getCurrentUser,
 				logout: logout,
 				createUser: createUser,
+				sendResetPasswordEmail: sendResetPasswordEmail,
+				changePassword: changePassword,
 				ref: simpleLogin // expose ref if necessary
 			};
 
@@ -138,6 +140,15 @@ define(
 				} else {
 					$log.error('wtf');
 				}
+			}
+
+			function sendResetPasswordEmail (user) {
+				simpleLogin.$sendPasswordResetEmail(user.email);
+			}
+
+			function changePassword (user, oldPassword, newPassword) {
+				return simpleLogin.$changePassword(user.email,
+					oldPassword, newPassword);
 			}
 		}
 	}

@@ -1,0 +1,49 @@
+<table class="ui table segment inverted">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Display Name</th>
+			<th>Provider</th>
+			<th>User Role</th>
+			<th>Password Reset</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr ng-repeat="user in admin.users">
+			<td>
+				{{user.$id}}
+			</td>
+			<td>
+				{{user.displayName}}
+			</td>
+			<td>
+				{{user.provider}}
+			</td>
+			<td>
+				<div class="ui dropdown" semantic-dropdown>
+					<div class="text">
+						{{user.role || 'Default'}}
+					</div>
+					<i class="dropdown icon"></i>
+					<div class="menu">
+						<div class="item"
+							ng-click="admin.assignUserRole(user, 'Default')">
+							Default
+						</div>
+						<div class="item"
+							ng-click="admin.assignUserRole(user, 'Admin')">
+							Admin
+						</div>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="ui icon basic button"
+					ng-click="admin.sendResetPasswordEmail(user)">
+					<i class="icon key"></i>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>

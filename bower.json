@@ -16,7 +16,7 @@
     "firebase": "latest",
     "angularfire": "latest",
     "fontawesome": "~4.2.0",
-    "semantic": "~0.19.3",
+    "semantic": "latest",
     "animate.css": "~3.2.0"
   }
 }

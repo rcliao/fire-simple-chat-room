@@ -7,6 +7,7 @@ define(
 		// controllers
 		'simpleChat.authenticationCtrl',
 		'simpleChat.chatCtrl',
+		'simpleChat.adminCtrl',
 
 		// widgets
 		'simpleWidget.ngEnter',
@@ -44,6 +45,31 @@ define(
 						resolve: {
 							currentUser: getCurrentUser
 						}
+					}
+				)
+				.state(
+					'admin',
+					{
+						url: '/admin',
+						templateUrl: 'partials/admin/admin.html',
+						controller: 'AdminCtrl as admin',
+						resolve: {
+							currentUser: getCurrentUser
+						}
+					}
+				)
+				.state(
+					'admin.users',
+					{
+						url: '/admin/users',
+						templateUrl: 'partials/admin/users.html'
+					}
+				)
+				.state(
+					'admin.rooms',
+					{
+						url: '/admin/rooms',
+						templateUrl: 'partials/admin/rooms.html'
 					}
 				);
 
