@@ -48,13 +48,8 @@ define(
 				)
 				.then(registerCallback, registerError);
 
-				function registerCallback (error) {
-					if (error === null) {
-						login();
-					} else {
-						vm.feedback = 'Failed to register: ' + error;
-						removeFeedbackLater(4000);
-					}
+				function registerCallback (user) {
+					login();
 				}
 
 				function registerError (error) {

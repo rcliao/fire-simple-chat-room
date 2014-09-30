@@ -121,7 +121,7 @@ define(
 						.$asObject()
 						.$loaded()
 						.then(function(existingUser) {
-							if(!existingUser.$value) {
+							if(!existingUser.displayName) {
 								// save new user's profile into Firebase so we can
 								// list users, use them in security rules, and show profiles
 								$firebase(existingUserRef)
