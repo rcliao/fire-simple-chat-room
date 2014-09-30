@@ -71,7 +71,6 @@ define(
 					.then(emailResetSuccess, emailResetError);
 
 				function emailResetError (error) {
-					console.log(error);
 					vm.passwordResetFeedback = {
 						message: error.message,
 						success: false
