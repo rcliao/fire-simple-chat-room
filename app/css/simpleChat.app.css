@@ -91,7 +91,8 @@ body {
     height:         calc(100% - 104px); /* IE 9+, Fx 16+, Ch 26+ */
 }
 
-.minimal.messages .messages {
+.minimal.messagesment
+{
     position: relative;
     display: block;
     list-style: none;
