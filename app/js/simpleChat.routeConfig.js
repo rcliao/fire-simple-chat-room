@@ -12,7 +12,8 @@ define(
 		// widgets
 		'simpleWidget.ngEnter',
 		'simpleWidget.semanticPopUp',
-		'simpleWidget.semanticDropdown'
+		'simpleWidget.semanticDropdown',
+		'simpleWidget.semanticAccordion'
 	],
 	function(app) {
 		'use strict';

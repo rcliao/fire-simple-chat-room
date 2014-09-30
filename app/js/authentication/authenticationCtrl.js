@@ -40,6 +40,7 @@ define(
 
 			vm.register = register;
 			vm.login = login;
+			vm.sendPasswordResetEmail = sendPasswordResetEmail;
 
 			function register () {
 				SimpleLoginService.createUser(
@@ -63,6 +64,27 @@ define(
 				SimpleLoginService
 					.emailLogin(vm.user)
 					.then(loginSuccess, loginError);
+			}
+
+			function sendPasswordResetEmail (user) {
+				SimpleLoginService.sendResetPasswordEmail(user)
+					.then(emailResetSuccess, emailResetError);
+
+				function emailResetError (error) {
+					console.log(error);
+					vm.passwordResetFeedback = {
+						message: error.message,
+						success: false
+					};
+				}
+
+				function emailResetSuccess () {
+					vm.passwordResetFeedback = {
+						message: 'You should be receiving the reset ' +
+						'password email soon.',
+						success: true
+					};
+				}
 			}
 
 			/* Helper methods */

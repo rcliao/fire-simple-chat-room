@@ -143,7 +143,7 @@ define(
 			}
 
 			function sendResetPasswordEmail (user) {
-				simpleLogin.$sendPasswordResetEmail(user.email);
+				return simpleLogin.$sendPasswordResetEmail(user.email);
 			}
 
 			function changePassword (user, oldPassword, newPassword) {

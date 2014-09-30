@@ -91,7 +91,7 @@ body {
     height:         calc(100% - 104px); /* IE 9+, Fx 16+, Ch 26+ */
 }
 
-.messages {
+.minimal.messages .messages {
     position: relative;
     display: block;
     list-style: none;
@@ -100,21 +100,21 @@ body {
     padding: 0;
 }
 
-.message img.ui.avatar,
-.my-message img.ui.avatar {
+.minimal.messages .message img.ui.avatar,
+.minimal.messages .my-message img.ui.avatar {
     width: 3em;
     height: 3em;
 }
 
-.message img.ui.avatar {
+.minimal.messages .message img.ui.avatar {
     float: left;
 }
-.my-message img.ui.avatar {
+.minimal.messages .my-message img.ui.avatar {
     float: right;
 }
 
-.message .content,
-.my-message .content {
+.minimal.messages .message .content,
+.minimal.messages .my-message .content {
     display: inline-block;
 
     padding: 0.35em 0.7em;
@@ -130,12 +130,12 @@ body {
     border-radius: 0.3em;
 }
 
-.my-message .content {
+.minimal.messages .my-message .content {
     float: right;
 }
 
-.message .content:after,
-.message .content:before {
+.minimal.messages .message .content:after,
+.minimal.messages .message .content:before {
     right: 100%;
     top: 50%;
     border: solid transparent;
@@ -146,15 +146,15 @@ body {
     pointer-events: none;
 }
 
-.message .content:after {
+.minimal.messages .message .content:after {
     border-color: rgba(213, 102, 135, 0);
     border-right-color: #d56687;
     border-width: 8px;
     margin-top: -8px;
 }
 
-.my-message .content:after,
-.my-message .content:before {
+.minimal.messages .my-message .content:after,
+.minimal.messages .my-message .content:before {
     left: 100%;
     top: 50%;
     border: solid transparent;
@@ -165,18 +165,18 @@ body {
     pointer-events: none;
 }
 
-.my-message .content:after {
+.minimal.messages .my-message .content:after {
     border-color: rgba(213, 102, 135, 0);
     border-left-color: #d56687;
     border-width: 8px;
     margin-top: -8px;
 }
 
-.message .content .text {
+.minimal.messages .message .content .text {
     margin-left: 1em;
 }
 
-.my-message .content .text {
+.minimal.messages .my-message .content .text {
     float: right;
     margin-right: 1em;
 }

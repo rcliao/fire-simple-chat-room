@@ -33,6 +33,7 @@ require.config({
 		'simpleWidget.ngEnter': 'widgets/simpleWidget.ngEnter',
 		'simpleWidget.semanticPopUp': 'widgets/simpleWidget.semanticPopUp',
 		'simpleWidget.semanticDropdown': 'widgets/simpleWidget.semanticDropdown',
+		'simpleWidget.semanticAccordion': 'widgets/simpleWidget.semanticAccordion',
 
 		// authentication
 		'simpleChat.authenticationCtrl': 'authentication/authenticationCtrl',

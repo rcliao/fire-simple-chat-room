@@ -16,7 +16,7 @@
 						placeholder="Email"
 						ng-model="authentication.user.email"
 						autofocus>
-					<i class="user icon"></i>
+					<i class="mail outline icon"></i>
 				</div>
 			</div>
 			<div class="field">
@@ -32,7 +32,36 @@
 			</div>
 
 			<div class="ui message">
-				You will be able to set your display name in the chatroom
+				<div class="ui basic accordion" semantic-accordion>
+					<div class="title">
+						<i class="dropdown icon"></i>
+						Forgot password? Click here to receive a password reset email.
+					</div>
+					<div class="content">
+						<div class="ui input fluid icon left action">
+							<input type="email"
+								placeholder="Your email"
+								ng-model="authentication.emailForReset"
+								ng-enter="authentication
+									.sendPasswordResetEmail({'email': authentication.emailForReset})">
+							<i class="icon mail outline"></i>
+							<div class="ui button"
+								ng-click="authentication
+									.sendPasswordResetEmail({'email': authentication.emailForReset})">
+								Send Email
+							</div>
+						</div>
+
+						<div class="ui pointing label"
+							ng-class="{
+								'red': !authentication.passwordResetFeedback.success,
+								'green': authentication.passwordResetFeedback.success
+							}"
+							ng-show="authentication.passwordResetFeedback.message">
+							{{authentication.passwordResetFeedback.message}}
+						</div>
+					</div>
+				</div>
 			</div>
 
 			<!-- Common Buttons -->
