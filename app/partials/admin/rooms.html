@@ -4,6 +4,7 @@
 			<th>Room Name</th>
 			<th>Room Presence</th>
 			<th>Room Members</th>
+			<th>Private?</th>
 			<th>Delete Room</th>
 		</tr>
 	</thead>
@@ -16,13 +17,13 @@
 			<td>
 
 			</td>
+
 			<td>
 				<div class="ui list"
 					ng-init="members = admin.getMembers(room.name)"
 					ng-show="members.length > 0">
 					<div class="item"
 						ng-repeat="member in members">
-						<img ng-src="member.profilePhoto" alt="" class="ui avatar image">
 						<div class="content">
 							<div class="header">
 								{{member.displayName}}
@@ -46,6 +47,13 @@
 					</div>
 				</div>
 			</td>
+
+			<td>
+				<input type="checkbox" ng-model="roomIsPrivate"
+					ng-init="roomIsPrivate = room.private;"
+					ng-change="admin.saveRoomAccess(room.name, roomIsPrivate)">
+			</td>
+
 			<td>
 				<div class="ui icon button basic"
 					ng-click="admin.removeRoom(room.name)">
@@ -57,7 +65,7 @@
 
 	<tfoot>
 		<tr>
-			<td colspan="4">
+			<td colspan="5">
 				<div class="ui fluid input action">
 					<input type="text" placeholder="Room Name"
 						ng-model="admin.newRoomName"

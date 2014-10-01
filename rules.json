@@ -1,0 +1,62 @@
+{
+  "rules": {
+
+    "users": {
+      ".read": false,
+      "$user_id": {
+        // only the user can read and write to its own user info
+        ".read": "$user_id === auth.id",
+        ".write": "$user_id === auth.id"
+      }
+    },
+
+    "rooms": {
+      "$room_name": {
+        // only the member can see the meta information for this room
+        ".read": "root.child('members/'+$room_name+'/'+auth.id).exists()",
+
+        // room we want to write a message to must be valid
+        ".validate": "root.child('rooms/'+$room_name).exists()"
+      }
+    },
+
+    "presence": {
+      "$room_name": {
+        // only the member can see or update the presence of this room
+        ".read": "root.child('members/'+$room_name+'/'+auth.id).exists() || root.child('rooms/' + $room_name + '/private').val() != true",
+        ".write": "root.child('members/'+$room_name+'/'+auth.id).exists() || root.child('rooms/' + $room_name + '/private').val() != true"
+      }
+    },
+
+    "messages": {
+      "$room_name": {
+        // only the selected member can see the messages from this room unless it's set to public
+        ".read": "root.child('members/'+$room_name+'/'+auth.id).exists() || root.child('rooms/' + $room_name + '/private').val() != true",
+
+        // room we want to write a message to must be valid
+        ".validate": "root.child('rooms/'+$room_name).exists()",
+
+        "$message_id": {
+            // a new message can be created if it does not exist, but it
+            // cannot be modified or deleted
+            // any member of a room can write a new message
+            ".write": "(root.child('members/'+$room_name+'/'+auth.id).exists() || root.child('rooms/' + $room_name + '/private').val() != true)",
+
+            // the message must be written by logged in user
+            "author": {
+               ".validate": "auth.id !== null"
+            },
+
+            // the message must be longer than 0 chars and less than 50
+            "text": { ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length < 50" },
+
+            // messages cannot be added in the past or the future
+            // clients should use Firebase.ServerValue.TIMESTAMP to ensure
+            // accurate timestamps
+            "timestamp": { ".validate": "newData.val() <= now" }
+
+        }
+      }
+    }
+  }
+}

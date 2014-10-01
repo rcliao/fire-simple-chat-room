@@ -73,8 +73,8 @@ define(
 				var amOnline = new Firebase('https://fire-chat-room.firebaseio.com' +
 					'/.info/connected');
 				var roomRef = new Firebase('https://fire-chat-room.firebaseio.com')
-					.child(vm.chatRoomName)
-					.child('presence');
+					.child('presence')
+					.child(vm.chatRoomName);
 				var userRef = roomRef
 					.child(vm.user.$id);
 
