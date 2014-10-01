@@ -109,6 +109,20 @@ define(
 							isInRoom: true
 						}
 					);
+
+				vm.users
+					.$inst()
+					.$ref()
+					.child(newMember.$id)
+					.child('rooms')
+					.child(roomName)
+					.set(
+						{
+							name: roomName
+						}
+					);
+
+				newMember = '';
 			}
 
 			function removeMember (roomName, member) {
@@ -117,6 +131,14 @@ define(
 					.$ref()
 					.child(roomName)
 					.child(member.$id)
+					.remove();
+
+				vm.users
+					.$inst()
+					.$ref()
+					.child(member.$id)
+					.child('rooms')
+					.child(roomName)
 					.remove();
 			}
 

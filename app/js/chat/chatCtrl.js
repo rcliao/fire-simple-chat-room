@@ -33,13 +33,20 @@ define(
 			currentUser) {
 
 			var vm = this;
-			var chatRef = new Firebase('https://fire-chat-room.firebaseio.com/')
+			var baseRef = new Firebase('https://fire-chat-room.firebaseio.com/')
+			var chatRef = baseRef
 				.child('messages')
 				.child($stateParams.roomName);
+			var roomRef = baseRef
+				.child('users')
+				.child(currentUser.$id)
+				.child('rooms');
 
 			vm.user = currentUser;
 			vm.chatRoomName = $stateParams.roomName;
 			vm.messages = $firebase(chatRef).$asArray();
+			vm.rooms = $firebase(roomRef).$asArray();
+
 			// TODO: maybe implement a persistent notification system later
 			vm.notifications = [];
 

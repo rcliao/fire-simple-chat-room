@@ -40,7 +40,8 @@
 						ng-model="member"
 						typeahead="user as user.displayName for user in admin.users |
 							filter:$viewValue | limitTo:3"
-						ng-enter="admin.addMember(room.name, member)">
+						ng-enter="admin.addMember(room.name, member);
+							member = '';">
 					<div class="ui icon basic button"
 						ng-click="admin.addMember(room.name, member)">
 						<i class="icon add"></i>
