@@ -2,9 +2,26 @@
 	<div class="column height-inherit" id="chat_container">
 		<header class="ui top attached red inverted menu">
 
-			<div class="item">
+			<div class="item ui pointing top left dropdown" semantic-dropdown>
 				<i class="chat outline icon"></i>
-				Simple Chat
+				Simple Chat / {{chat.chatRoomName}}
+
+				<div class="menu">
+					<div class="item"
+						ui-sref="chat({roomName: 'public'})">
+						Public
+					</div>
+
+					<div class="item" ng-repeat="room in chat.rooms"
+						ui-sref="chat({roomName: room.name})">
+						{{room.name}}
+					</div>
+
+					<div class="item" ng-show="chat.user.role === 'Admin'"
+						ui-sref="admin">
+						Admin Panel
+					</div>
+				</div>
 			</div>
 
 			<div class="right menu">

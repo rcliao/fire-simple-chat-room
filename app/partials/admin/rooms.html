@@ -1,0 +1,83 @@
+<table class="ui table segment inverted">
+	<thead>
+		<tr>
+			<th>Room Name</th>
+			<th>Room Presence</th>
+			<th>Room Members</th>
+			<th>Private?</th>
+			<th>Delete Room</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr ng-repeat="room in admin.rooms">
+			<td>
+				{{room.name}}
+			</td>
+			<td>
+
+			</td>
+
+			<td>
+				<div class="ui list"
+					ng-init="members = admin.getMembers(room.name)"
+					ng-show="members.length > 0">
+					<div class="item"
+						ng-repeat="member in members">
+						<div class="content">
+							<div class="header">
+								{{member.displayName}}
+								<i class="icon remove"
+									ng-click="admin.removeMember(room.name, member)">
+								</i>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="ui basic input action">
+					<input type="text"
+						ng-model="member"
+						typeahead="user as user.displayName for user in admin.users |
+							filter:$viewValue | limitTo:3"
+						ng-enter="admin.addMember(room.name, member);
+							member = '';">
+					<div class="ui icon basic button"
+						ng-click="admin.addMember(room.name, member)">
+						<i class="icon add"></i>
+					</div>
+				</div>
+			</td>
+
+			<td>
+				<input type="checkbox" ng-model="roomIsPrivate"
+					ng-init="roomIsPrivate = room.private;"
+					ng-change="admin.saveRoomAccess(room.name, roomIsPrivate)">
+			</td>
+
+			<td>
+				<div class="ui icon button basic"
+					ng-click="admin.removeRoom(room.name)">
+					<i class="icon remove"></i>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+
+	<tfoot>
+		<tr>
+			<td colspan="5">
+				<div class="ui fluid input action">
+					<input type="text" placeholder="Room Name"
+						ng-model="admin.newRoomName"
+						ng-enter="admin.addRoom()">
+					<div class="ui button icon basic"
+						ng-click="admin.addRoom()">
+						<i class="icon add"></i>
+						Add Room
+					</div>
+				</div>
+			</td>
+		</tr>
+	</tfoot>
+</table>

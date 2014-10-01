@@ -91,7 +91,7 @@ body {
     height:         calc(100% - 104px); /* IE 9+, Fx 16+, Ch 26+ */
 }
 
-.minimal.messagesment
+.minimal.messages
 {
     position: relative;
     display: block;

@@ -55,8 +55,15 @@ define(
 
 			// functions
 			vm.addRoom = addRoom;
+			vm.removeRoom = removeRoom;
+			vm.saveRoomAccess = saveRoomAccess;
+
 			vm.addMember = addMember;
+			vm.removeMember = removeMember;
+			vm.getMembers = getMembers;
+
 			vm.assignUserRole = assignUserRole;
+
 			vm.sendResetPasswordEmail = sendResetPasswordEmail;
 			vm.logout = logout;
 
@@ -73,13 +80,75 @@ define(
 				vm.newRoomName = '';
 			}
 
+			function removeRoom (roomName) {
+				vm.rooms
+					.$inst()
+					.$ref()
+					.child(roomName)
+					.remove();
+			}
+
+			function saveRoomAccess (roomName, roomIsPrivate) {
+				vm.rooms
+					.$inst()
+					.$ref()
+					.child(roomName)
+					.child('private')
+					.set(roomIsPrivate);
+			}
+
 			function addMember (roomName, newMember) {
 				vm.members
 					.$inst()
 					.$ref()
 					.child(roomName)
-					.child(newMember.id)
-					.set(true);
+					.child(newMember.$id)
+					.set(
+						{
+							displayName: newMember.displayName,
+							isInRoom: true
+						}
+					);
+
+				vm.users
+					.$inst()
+					.$ref()
+					.child(newMember.$id)
+					.child('rooms')
+					.child(roomName)
+					.set(
+						{
+							name: roomName
+						}
+					);
+
+				newMember = '';
+			}
+
+			function removeMember (roomName, member) {
+				vm.members
+					.$inst()
+					.$ref()
+					.child(roomName)
+					.child(member.$id)
+					.remove();
+
+				vm.users
+					.$inst()
+					.$ref()
+					.child(member.$id)
+					.child('rooms')
+					.child(roomName)
+					.remove();
+			}
+
+			function getMembers (roomName) {
+				return $firebase(
+					vm.members
+						.$inst()
+						.$ref()
+						.child(roomName)
+				).$asArray();
 			}
 
 			function assignUserRole (user, role) {
