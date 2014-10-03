@@ -1,6 +1,6 @@
 <section class="ui doubling page aligned middle center three column grid">
 	<div id="login_form" class="column z-index-4">
-		<h3 class="ui top attached red  inverted block header">
+		<h3 class="ui top attached blue  inverted block header">
 			Odd World
 		</h3>
 		<section class="ui form segment attached"
@@ -54,7 +54,7 @@
 
 						<div class="ui pointing label"
 							ng-class="{
-								'red': !authentication.passwordResetFeedback.success,
+								'blue': !authentication.passwordResetFeedback.success,
 								'green': authentication.passwordResetFeedback.success
 							}"
 							ng-show="authentication.passwordResetFeedback.message">
@@ -65,7 +65,7 @@
 			</div>
 
 			<!-- Common Buttons -->
-			<section class="ui fluid two red buttons">
+			<section class="ui fluid two blue buttons">
 				<button class="ui button"
 					ng-click="authentication.login()">
 					Login
@@ -80,7 +80,7 @@
 			</section>
 		</section>
 
-		<section class="ui bottom attached red message"
+		<section class="ui bottom attached blue message"
 			id="login_feedback"
 			ng-if="authentication.feedback">
 			{{authentication.feedback}}

@@ -124,7 +124,7 @@ define(
 				$state.go(
 					'chat',
 					{
-						'roomName': 'default'
+						'roomName': 'public'
 					}
 				);
 			}

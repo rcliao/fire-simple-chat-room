@@ -1,6 +1,6 @@
 <section class="ui one column page grid height-inherit">
 	<div class="column height-inherit" id="chat_container">
-		<header class="ui top attached blue inverted menu z-index-3">
+		<header class="ui top attached blue inverted menu z-index-3 computer tablet only grid">
 
 			<div class="item ui pointing top left dropdown" semantic-dropdown>
 				<i class="chat outline icon"></i>
@@ -79,6 +79,84 @@
 			</div>
 		</header>
 
+		<header class="ui top attached blue inverted menu z-index-3 mobile only grid">
+
+			<div class="item ui pointing top left dropdown" semantic-dropdown>
+				<i class="chat outline icon"></i>
+				{{chat.chatRoomName}}
+
+				<div class="menu">
+					<div class="item"
+						ui-sref="chat({roomName: 'public'})">
+						Public
+					</div>
+
+					<div class="item" ng-repeat="room in chat.rooms"
+						ui-sref="chat({roomName: room.name})">
+						{{room.name}}
+					</div>
+
+					<div class="item" ng-show="chat.user.role === 'Admin'"
+						ui-sref="admin">
+						Admin Panel
+					</div>
+				</div>
+			</div>
+
+			<div class="right menu">
+				<div class="item link ui left top pointing dropdown" semantic-dropdown>
+					<i class="users large icon"></i>
+					{{chat.roomPresence.length}}
+					<div class="menu">
+						<div class="item"
+							ng-repeat="presence in chat.roomPresence">
+							{{presence.displayName}}
+						</div>
+					</div>
+				</div>
+
+				<div class="item ui pointing dropdown" semantic-dropdown>
+					<img src="http://automobilein.com/wp-content/uploads/2014/02/Pikachu-Iphone-Wallpaper.jpg"
+						class="ui image tiny avatar"
+						alt="Profile photo">
+					<div class="menu">
+						<div class="item disabled">
+							<i class="icon photo"></i>
+							Upload Profile Image
+						</div>
+						<div class="item" ng-click="chat.changePassword()">
+							<i class="icon key"></i>
+							Change Password
+						</div>
+						<div class="item" ng-click="chat.logout()">
+							<i class="icon sign out"></i>
+							Log Out
+						</div>
+					</div>
+				</div>
+
+				<div class="item ui pointing top right dropdown" semantic-dropdown>
+					<i class="large icon info animated pulse infinite"></i>
+
+					<span ng-show="chat.notifications.length > 0">
+						{{chat.notifications.length}}
+					</span>
+
+					<div class="menu" ng-show="chat.notifications.length > 0">
+						<div class="item"
+							ng-repeat="notification in chat.notifications">
+							<i class="icon {{notification.icon}}"></i>
+							{{notification.summary}}
+							{{notification.detail}}
+							<i class="icon close"
+								ng-click="chat.dismissNotification($index)">
+							</i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+
 		<section class="z-index-3 ui attached inverted segment" id="chat_content_container">
 			<div class="column">
 				<ul class="minimal messages">
@@ -119,7 +197,7 @@
 				<input type="text" autofocus placeholder="Say something..."
 					ng-model="chat.message.text"
 					ng-enter="chat.saySomething()">
-				<div class="ui red button" ng-click="chat.saySomething()">
+				<div class="ui blue button" ng-click="chat.saySomething()">
 					Enter
 				</div>
 			</div>

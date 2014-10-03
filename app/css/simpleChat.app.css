@@ -119,6 +119,8 @@ body {
 .minimal.messages .my-message img.ui.avatar {
     width: 3em;
     height: 3em;
+
+    margin-top: 0.5em;
 }
 
 .minimal.messages .message img.ui.avatar {
@@ -134,7 +136,7 @@ body {
     position: relative;
 
     padding: 0.35em 0.7em 0.7em;
-    margin-bottom: 0.4em;
+    margin-bottom: 0.8em;
     margin-left: 1em;
     margin-right: 1em;
     border-color: #c2e1f5;
