@@ -50,8 +50,9 @@ define(
 			// TODO: maybe implement a persistent notification system later
 			vm.notifications = [];
 
-			vm.messages.$watch(newMessageHandler);
+			vm.messages.$watch(scrollToBottomOfChat);
 			checkPresence();
+			scrollToBottomOfChat();
 
 			vm.saySomething = saySomething;
 			vm.changePassword = changePassword;
@@ -102,7 +103,7 @@ define(
 				vm.roomPresence = $firebase(roomRef).$asArray();
 			}
 
-			function newMessageHandler () {
+			function scrollToBottomOfChat () {
 				angular.element(document).ready(function() {
 					var chatContentContainer = document
 						.getElementById('chat_content_container');
